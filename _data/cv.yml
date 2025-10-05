@@ -76,6 +76,11 @@
   type: time_table
   contents:
     - title: Research Member
+      institution: KyungHee Deeplearning Study Team (KDST) (previous at KIST)
+      year: 2024 - Present
+      description:
+        - Study formal verification of neural network and other topics (Pruning, Quantization, PEFT, etc)
+    - title: Research Member
       institution: Ian Davidson's lab, UC Davis
       year: 2022 - 2024
       description:
@@ -109,19 +114,8 @@
       description:
         - Monitored traffic, intrusion detection logs such as DDOS, spoofing, and viruses
         - Dealt with computer emergent accidents
-        - Audited other soldiers (from staff sergeant to lieutenant colonel) whether they consistently comply with security rules or not
+        - Audited other soldiers whether they consistently comply with security rules or not
 
-- title: Skills
-  type: map
-  contents:
-    - name: Languages
-      value: C/C++. Python, R, Scala, Java
-    - name: Frameworks
-      value: LLVM, Pytorch, Sklearn
-    - name: Solvers
-      value: Z3-SAT/SMT solver, Gurobi-ILP solver
-    - name: Etc
-      value: Code optimization, program analysis, Cryptography
 
 # - title: Open Source Projects
 #   type: time_table
@@ -150,6 +144,13 @@
       items:
         - Programming Context at Dept of CSE, Dongguk University
 
+- title: Teaching experience
+  type: time_table
+  contents:
+    - year: 2025
+      items: 
+        - AI100200 (AI Programming) @ KyungHee University
+
 - title: Patents
   type: nested_list
   contents:
@@ -165,6 +166,18 @@
     - year: 2016
       items: 
         - Industrial engineer information secuirty, Korea Internet & Security Agency (KISA)
+
+- title: Skills
+  type: map
+  contents:
+    - name: Languages
+      value: C/C++. Python, R, Scala, Java
+    - name: Frameworks
+      value: LLVM, Pytorch, Sklearn
+    - name: Solvers
+      value: Z3-SAT/SMT solver, Gurobi-ILP solver
+    - name: Etc
+      value: Code optimization, program analysis, Cryptography
 
 # - title: Other Interests
 #   type: list

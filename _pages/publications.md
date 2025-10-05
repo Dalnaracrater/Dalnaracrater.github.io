@@ -9,6 +9,9 @@ nav_order: 1
 <!-- _pages/publications.md -->
 <div class="publications">
 
-{% bibliography -f {{ site.scholar.bibliography }} %}
+<h3>International</h3>
+{% bibliography -f papers_intl %}
 
+<h3>Domestic (Korea)</h3>
+{% bibliography -f papers %}
 </div>
