@@ -17,7 +17,7 @@ selected_papers: true # includes a list of papers marked as "selected={true}"
 social: true  # includes social icons at the bottom of the page
 ---
 
-My current research interests lie in **adversarial/certified robustness through formal methods**. To develop reliable and secure software, I previously studied software verification/analysis, cybersecurity, and compiler optimization. Building on these experiences, my research goal remains to ensure the reliability and safety of software systems, now integrated with AI components.
+My current research interests lie in **certified/adversarial robustness through formal methods**. To develop reliable and secure software, I previously studied software verification/analysis, cybersecurity, and compiler optimization. Building on these experiences, my research goal remains to ensure the reliability and safety of software systems, now integrated with AI components.
 
 In parallel, I am also exploring **efficient AI approaches such as quantization, pruning, PEFT**, since security mechanisms often compromise user availability and practicality. Ultimately, I aim to balance robustness and efficiency in AI systems, enabling users to leverage trustworthy AI technologies in real world settings.
 
