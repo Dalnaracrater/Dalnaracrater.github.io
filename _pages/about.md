@@ -17,17 +17,19 @@ selected_papers: true # includes a list of papers marked as "selected={true}"
 social: true  # includes social icons at the bottom of the page
 ---
 
-My research goal is *to understand model behavior through adversarial noise*, and to leverage this understanding to achieve **certified/adversarial robustness**. Although worst-case adversarial noise can induce unintended behaviors in AI models, it also provides a valuable signal for learning more robust and interpretable representations. However, its role in shaping model behaviors remains poorly understood.
+I am interested in reasoning and safety for trustworthy AI, with a focus on understanding the behavior of large language models. Previously, I worked on certified robustness in AI/ML and on software security grounded in programming language theory.
+
+<!-- My research goal is *to understand model behavior through adversarial noise*, and to leverage this understanding to achieve **certified/adversarial robustness**. Although worst-case adversarial noise can induce unintended behaviors in AI models, it also provides a valuable signal for learning more robust and interpretable representations. However, its role in shaping model behaviors remains poorly understood.
 
 Previously, I studied software verification/analysis, cybersecurity, and compiler optimization to understand how software operates and develop reliable software. Building on these experiences, my research interests continue to focus on ensuring the reliability and safety of software systems, now extended to modern AI models.
 
-In parallel, I am also exploring **efficient AI approaches such as PEFT, quantization, pruning**, since security mechanisms often compromise user availability and practicality. Ultimately, I aim to balance robustness and efficiency in AI, enabling users to deploy trustworthy AI technologies in real-world applications.
+In parallel, I am also exploring **efficient AI approaches such as PEFT, quantization, pruning**, since security mechanisms often compromise user availability and practicality. Ultimately, I aim to balance robustness and efficiency in AI, enabling users to deploy trustworthy AI technologies in real-world applications. -->
 
 I am currently working with [Prof. Suhyun Kim](https://kdst.re.kr/page/Selected-Publications-since-2020), who provides valuable guidance as I pursue independent research with strong self-motivation.
 
 I earned a Master's degree in Computer Science at University of California, Davis advised by [Prof. Ian Davidson](https://www.cs.ucdavis.edu/~davidson/). Under supervision of Prof. Davidson, I studied deep fair clustering using constraint programing (CP) and learned that CP can be effectively apllied to ML systems. I obtained my Bachelor's degree in Computer Science and Engineering at Dongguk University. [Prof. Yunsik Son](https://sites.google.com/dgu.ac.kr/plass/english?authuser=0) first introduced me to programming language, secure software and related research area.
 
-In my free time, I usually [<u>cook</u>](/cooking/) or watch movies.
+In my free time, I usually cook ([<u>click!</u>](/cooking/)) or watch movies.
 
 <!-- Write your biography here. Tell the world about yourself. Link to your favorite [subreddit](http://reddit.com). You can put a picture in, too. The code is already in, just name your picture `prof_pic.jpg` and put it in the `img/` folder.
 
