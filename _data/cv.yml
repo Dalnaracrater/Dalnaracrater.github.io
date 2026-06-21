@@ -79,7 +79,8 @@
       institution: KyungHee Deeplearning Study Team (KDST) (previous at KIST)
       year: 2024 - Present
       description:
-        - Study formal verification of neural network and other topics (Pruning, Quantization, PEFT, etc)
+        - Study reasoning and safe for trusted AI
+        - Studied formal verification of neural network and other topics (Pruning, Quantization, PEFT, etc)
     - title: Research Member
       institution: Ian Davidson's lab, UC Davis
       year: 2022 - 2024
@@ -127,6 +128,10 @@
 - title: Honors and Awards
   type: time_table
   contents:
+    - title: Commendation
+      year: 2026
+      items:
+        - Model Citizen Award by Mayor of Yeongtong, Suwon
     - title: Senior scholarship
       year: 2020
       items:
@@ -147,7 +152,7 @@
 - title: Teaching experience
   type: time_table
   contents:
-    - year: 2025
+    - year: 2025, 2026
       items: 
         - AI100200 (AI Programming) @ KyungHee University
 
