@@ -17,7 +17,7 @@ selected_papers: true # includes a list of papers marked as "selected={true}"
 social: true  # includes social icons at the bottom of the page
 ---
 
-I am interested in reasoning and safety for trustworthy AI, with a focus on understanding the behavior of large language models. Previously, I worked on certified robustness in AI/ML and on software security grounded in programming language theory.
+I am interested in efficient yet creative reasoning and safety as a step toward superintelligence. Previously, I worked on certified robustness in AI/ML and on software security grounded in programming language theory.
 
 <!-- My research goal is *to understand model behavior through adversarial noise*, and to leverage this understanding to achieve **certified/adversarial robustness**. Although worst-case adversarial noise can induce unintended behaviors in AI models, it also provides a valuable signal for learning more robust and interpretable representations. However, its role in shaping model behaviors remains poorly understood.
 
