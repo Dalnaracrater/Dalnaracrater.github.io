@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="{{ site.lang }}">
+<!--
+  Main page, styled after Jon Barron's academic website.
+  Design: https://github.com/jonbarron/jonbarron_website
+-->
+<head>
+  {% include metadata.html %}
+  {% include site_head.html %}
+  <link rel="stylesheet" href="{{ '/assets/css/home.css' | relative_url | bust_file_cache }}">
+  <link rel="canonical" href="{{ page.url | replace:'index.html','' | absolute_url }}">
+  {% include scripts/analytics.html %}
+</head>
+
+<body class="home">
+  {%- capture full_name -%}{{ site.first_name }}{% if site.middle_name != blank %} {{ site.middle_name }}{% endif %} {{ site.last_name }}{%- endcapture -%}
+  {%- assign cv_page = site.pages | where: "permalink", "/cv/" | first -%}
+
+  {% include topnav.html %}
+  <main class="home-page">
+
+    <!-- Intro: name, bio, links, photo -->
+    <section class="intro">
+      <div class="intro-text">
+        <p class="name">{{ full_name }}</p>
+        <div class="bio">
+          {{ content }}
+        </div>
+        <p class="links">
+          {%- assign sep = false -%}
+          {%- if site.email -%}
+            <a href="mailto:{{ site.email | encode_email }}">Email</a>
+            {%- assign sep = true -%}
+          {%- endif -%}
+          {%- if cv_page.cv_pdf -%}
+            {% if sep %} &nbsp;/&nbsp; {% endif %}<a href="{{ cv_page.cv_pdf | prepend: '/assets/pdf/' | relative_url }}">CV</a>
+            {%- assign sep = true -%}
+          {%- elsif cv_page -%}
+            {% if sep %} &nbsp;/&nbsp; {% endif %}<a href="{{ cv_page.url | relative_url }}">CV</a>
+            {%- assign sep = true -%}
+          {%- endif -%}
+          {% if sep %} &nbsp;/&nbsp; {% endif %}<a href="{{ '/blog/' | relative_url }}">Blog</a>
+          {%- if site.scholar_userid -%}
+            {{ ' ' }}&nbsp;/&nbsp; <a href="https://scholar.google.com/citations?user={{ site.scholar_userid }}">Scholar</a>
+          {%- endif -%}
+          {%- if site.github_username -%}
+            {{ ' ' }}&nbsp;/&nbsp; <a href="https://github.com/{{ site.github_username }}">Github</a>
+          {%- endif -%}
+          {%- if site.linkedin_username -%}
+            {{ ' ' }}&nbsp;/&nbsp; <a href="https://www.linkedin.com/in/{{ site.linkedin_username }}">LinkedIn</a>
+          {%- endif -%}
+          {%- if site.x_username -%}
+            {{ ' ' }}&nbsp;/&nbsp; <a href="https://twitter.com/{{ site.x_username }}">Twitter</a>
+          {%- endif -%}
+        </p>
+      </div>
+      {%- if page.profile.image %}
+      {%- assign profile_image = page.profile.image | prepend: '/assets/img/' | relative_url -%}
+      <div class="intro-photo">
+        <a href="{{ profile_image }}"><img class="portrait" src="{{ profile_image }}" alt="profile photo of {{ full_name }}"></a>
+      </div>
+      {%- endif %}
+    </section>
+
+    <!-- Research intro -->
+    {%- if page.research %}
+    <section class="section">
+      <h2>Research</h2>
+      {{ page.research | markdownify }}
+    </section>
+    {%- endif %}
+
+    <!-- Papers -->
+    {%- if page.papers %}
+    <section class="papers">
+      {% bibliography -f {{ page.papers }} --group_by none --template bib_home %}
+    </section>
+    {%- endif %}
+
+    <footer class="credit">
+      Website design from <a href="https://github.com/jonbarron/jonbarron_website">Jon Barron</a>.
+    </footer>
+
+  </main>
+</body>
+</html>

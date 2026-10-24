@@ -1,0 +1,43 @@
+---
+layout: blog
+---
+{%- comment -%}
+  Photo grid page. Shows every .jpg/.jpeg/.png in `photos_dir`, sorted by file name.
+  Front matter:
+    photos_dir = folder under the site root, e.g. /assets/img/cooking/
+    subtitle   = line under the title (optional)
+  The page's own Markdown text, if any, appears above the grid.
+{%- endcomment -%}
+{%- assign photo_exts = ".jpg,.jpeg,.png,.JPG,.JPEG,.PNG" | split: "," -%}
+{%- assign photos = site.static_files | where_exp: "f", "f.path contains page.photos_dir" | sort: "path" -%}
+
+<header class="masthead">
+  <h1 class="name">{{ page.title | capitalize }}</h1>
+</header>
+{%- if page.subtitle %}
+<p class="blog-sub">{{ page.subtitle }}</p>
+{%- endif %}
+
+{%- assign intro = content | strip %}
+{%- if intro != "" %}
+<div class="post-body gallery-intro">
+  {{ content }}
+</div>
+{%- endif %}
+
+<div class="gallery">
+  {%- assign n = 0 -%}
+  {%- for photo in photos -%}
+    {%- unless photo_exts contains photo.extname -%}{%- continue -%}{%- endunless -%}
+    {%- assign n = n | plus: 1 -%}
+    {%- assign thumb = photo.path | remove: photo.extname | append: "-480.webp" -%}
+  <a class="gallery-item" href="{{ photo.path | relative_url }}">
+    <picture>
+      {%- if site.imagemagick.enabled %}
+      <source type="image/webp" srcset="{{ thumb | relative_url }}">
+      {%- endif %}
+      <img src="{{ photo.path | relative_url }}" alt="{{ page.title | capitalize }} photo {{ n }}" loading="lazy" decoding="async">
+    </picture>
+  </a>
+  {%- endfor %}
+</div>

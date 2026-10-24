@@ -1,0 +1,87 @@
+---
+---
+{%- comment -%}
+  One publication row on the main page, in the style of Jon Barron's website.
+  Optional BibTeX fields used here:
+    preview   = image in assets/img/publication_preview/ (or a full URL)
+    highlight = {true} to give the row a pale yellow background
+    tldr      = one or two sentences shown under the links
+    html, arxiv, pdf, code, slides, poster, video, website, blog = links
+{%- endcomment -%}
+{%- assign venue = entry.journal | default: entry.booktitle | default: entry.school | default: entry.publisher -%}
+{%- if venue contains 'arXiv' -%}{%- assign venue = 'arXiv' -%}{%- endif -%}
+
+{%- assign main_link = nil -%}
+{%- if entry.html -%}
+  {%- assign main_link = entry.html -%}
+{%- elsif entry.arxiv -%}
+  {%- assign main_link = entry.arxiv | prepend: 'https://arxiv.org/abs/' -%}
+{%- elsif entry.pdf -%}
+  {%- if entry.pdf contains '://' -%}{%- assign main_link = entry.pdf -%}{%- else -%}{%- assign main_link = entry.pdf | prepend: '/assets/pdf/' | relative_url -%}{%- endif -%}
+{%- elsif entry.website -%}
+  {%- assign main_link = entry.website -%}
+{%- endif -%}
+
+<div class="paper{% if entry.highlight == 'true' %} highlight{% endif %}" id="{{ entry.key }}">
+  <div class="paper-thumb">
+    {%- if entry.preview -%}
+      {%- if entry.preview contains '://' -%}
+        {%- assign preview_src = entry.preview -%}
+      {%- else -%}
+        {%- assign preview_src = entry.preview | prepend: '/assets/img/publication_preview/' | relative_url -%}
+      {%- endif -%}
+      <img src="{{ preview_src }}" alt="{{ entry.title | strip_html }}" loading="lazy">
+    {%- else -%}
+      <div class="thumb-placeholder">{{ entry.abbr | default: venue }}</div>
+    {%- endif -%}
+  </div>
+
+  <div class="paper-info">
+    {% if main_link %}<a href="{{ main_link }}"><span class="papertitle">{{ entry.title }}</span></a>{% else %}<span class="papertitle">{{ entry.title }}</span>{% endif %}
+    <br>
+    {%- for author in entry.author_array -%}
+      {%- assign author_last = author.last | remove: "¶" | remove: "&" | remove: "*" | remove: "†" | remove: "^" -%}
+      {%- assign coauthor_url = nil -%}
+      {%- if site.data.coauthors[author_last] -%}
+        {%- for coauthor in site.data.coauthors[author_last] -%}
+          {%- if coauthor.firstname contains author.first -%}
+            {%- assign coauthor_url = coauthor.url -%}
+            {%- break -%}
+          {%- endif -%}
+        {%- endfor -%}
+      {%- endif -%}
+      {%- unless forloop.first -%}, {% endunless -%}
+      {%- if author_last == site.last_name and author.first == site.first_name -%}
+        <strong>{{ author.first }} {{ author.last }}</strong>
+      {%- elsif coauthor_url -%}
+        <a href="{{ coauthor_url }}">{{ author.first }} {{ author.last }}</a>
+      {%- else -%}
+        {{ author.first }} {{ author.last }}
+      {%- endif -%}
+    {%- endfor %}
+    <br>
+    {% if venue != blank %}<em>{{ venue }}</em>, {% endif %}{{ entry.year }}
+    {%- if entry.award %}&nbsp;<span class="award">({{ entry.award }})</span>{% endif %}
+
+    {%- capture paper_links -%}
+      {%- if entry.html -%}<a href="{{ entry.html }}">project page</a>|{%- endif -%}
+      {%- if entry.arxiv -%}<a href="https://arxiv.org/abs/{{ entry.arxiv }}">arXiv</a>|{%- endif -%}
+      {%- if entry.pdf -%}<a href="{% if entry.pdf contains '://' %}{{ entry.pdf }}{% else %}{{ entry.pdf | prepend: '/assets/pdf/' | relative_url }}{% endif %}">pdf</a>|{%- endif -%}
+      {%- if entry.code -%}<a href="{{ entry.code }}">code</a>|{%- endif -%}
+      {%- if entry.slides -%}<a href="{% if entry.slides contains '://' %}{{ entry.slides }}{% else %}{{ entry.slides | prepend: '/assets/pdf/' | relative_url }}{% endif %}">slides</a>|{%- endif -%}
+      {%- if entry.poster -%}<a href="{% if entry.poster contains '://' %}{{ entry.poster }}{% else %}{{ entry.poster | prepend: '/assets/pdf/' | relative_url }}{% endif %}">poster</a>|{%- endif -%}
+      {%- if entry.video -%}<a href="{{ entry.video }}">video</a>|{%- endif -%}
+      {%- if entry.website -%}<a href="{{ entry.website }}">website</a>|{%- endif -%}
+      {%- if entry.blog -%}<a href="{{ entry.blog }}">blog</a>|{%- endif -%}
+    {%- endcapture -%}
+    {%- assign paper_links = paper_links | split: '|' -%}
+    {%- if paper_links.size > 0 %}
+    <br>
+    {{ paper_links | join: ' / ' }}
+    {%- endif %}
+
+    {%- if entry.tldr %}
+    <p>{{ entry.tldr }}</p>
+    {%- endif %}
+  </div>
+</div>

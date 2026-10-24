@@ -1,11 +1,7 @@
 ---
-layout: default
+layout: blog
 ---
 <!-- _layouts/post.html -->
-{%- assign year = page.date | date: "%Y" -%}
-{%- assign tags = page.tags | join: "" -%}
-{%- assign categories = page.categories | join: "" -%}
-
 {% if page._styles %}
 <!-- Page/Post style -->
 <style type="text/css">
@@ -13,56 +9,35 @@ layout: default
 </style>
 {% endif %}
 
-{% assign url_beginning = page.url | slice: 0, 6 %}
+{%- assign url_beginning = page.url | slice: 0, 6 -%}
 
-<div class="post">
+<article class="post">
+  <a class="back-link" href="{{ '/blog/' | relative_url }}">&larr; Blog</a>
+  <h1 class="post-h1">{{ page.title }}</h1>
+  <p class="post-meta">
+    {{ page.date | date: "%B %-d, %Y" }} &middot; {% if page.author %}{{ page.author }}{% else %}{{ site.first_name }} {{ site.last_name }}{% endif %}
+    {%- if page.meta %} &middot; {{ page.meta }}{% endif -%}
+    {%- if page.tags.size > 0 or page.categories.size > 0 %}
+    <span class="post-tags">
+      {%- for tag in page.tags %}
+        {% if url_beginning == '/blog/' %}<a href="{{ tag | slugify | prepend: '/blog/tag/' | relative_url }}">#{{ tag }}</a>{% else %}#{{ tag }}{% endif %}
+      {%- endfor %}
+      {%- for category in page.categories %}
+        {% if url_beginning == '/blog/' %}<a href="{{ category | slugify | prepend: '/blog/category/' | relative_url }}">{{ category }}</a>{% else %}{{ category }}{% endif %}
+      {%- endfor %}
+    </span>
+    {%- endif %}
+  </p>
 
-  <header class="post-header">
-    <h1 class="post-title">{{ page.title }}</h1>
-    <p class="post-meta">{{ page.date | date: "%B %-d, %Y" }}{%- if page.author -%} • {{ page.author }}{%- endif -%}{%- if page.meta -%} • {{ page.meta }}{%- endif -%}</p>
-    <p class="post-tags">
-      {% if url_beginning == '/blog/' -%}
-      <a href="{{ year | prepend: '/blog/' | prepend: site.baseurl}}"> <i class="fa-solid fa-calendar fa-sm"></i> {{ year }} </a>
-      {% else %}
-      <i class="fa-solid fa-calendar fa-sm"></i> {{ year }}
-      {%- endif %}
-      {%- if tags != "" %}
-      &nbsp; &middot; &nbsp;
-        {% for tag in page.tags -%}
-          {% if url_beginning == '/blog/' -%}
-          <a href="{{ tag | slugify | prepend: '/blog/tag/' | prepend: site.baseurl}}"> <i class="fa-solid fa-hashtag fa-sm"></i> {{ tag }}</a> &nbsp;
-          {% else %}
-          <i class="fa-solid fa-hashtag fa-sm"></i> {{ tag }} &nbsp;
-          {%- endif %}
+  {% if page.toc and page.toc.beginning %}
+  <nav id="table-of-contents">
+    {% toc %}
+  </nav>
+  {% endif %}
 
-          {% endfor -%}
-      {% endif %}
-
-      {%- if categories != "" %}
-      &nbsp; &middot; &nbsp;
-        {% for category in page.categories -%}
-          {% if url_beginning == '/blog/' -%}
-          <a href="{{ category | slugify | prepend: '/blog/category/' | prepend: site.baseurl}}"> <i class="fa-solid fa-tag fa-sm"></i> {{ category }}</a> &nbsp;
-          {% else %}
-          <i class="fa-solid fa-tag fa-sm"></i> {{ category }} &nbsp;
-          {%- endif %}
-        {% endfor -%}
-      {% endif %}
-
-    </p>
-  </header>
-
-  <article class="post-content">
-    {% if page.toc and page.toc.beginning %}
-    <div id="table-of-contents">
-      {% toc %}
-    </div>
-    <hr>
-    {% endif %}
-    <div id="markdown-content">
-      {{ content }}
-    </div>
-  </article>
+  <div class="post-body" id="markdown-content">
+    {{ content }}
+  </div>
 
   {%- if page.related_publications != null and page.related_publications.size > 0 -%}
   {% assign publications = page.related_publications | replace: ", ", "," | split: "," | join: "|" %}
@@ -72,12 +47,6 @@ layout: default
   </div>
   {%- endif %}
 
-  {%- if site.related_blog_posts.enabled -%}
-    {%- if page.related_posts == null or page.related_posts -%}
-      {% include related_posts.html %}
-    {%- endif %}
-  {%- endif %}
-
   {%- if site.disqus_shortname and page.disqus_comments -%}
     {% include disqus.html %}
   {%- endif %}
@@ -85,4 +54,5 @@ layout: default
     {% include giscus.html %}
   {%- endif -%}
 
-</div>
+  <a class="back-link post-footer-link" href="{{ '/blog/' | relative_url }}">&larr; Back to all posts</a>
+</article>

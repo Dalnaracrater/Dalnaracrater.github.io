@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="{{ site.lang }}">
+<!-- Shared shell for the blog index, archives, and posts. -->
+<head>
+  {% include metadata.html %}
+  <link rel="stylesheet" href="{{ '/assets/css/jekyll-pygments-themes-github.css' | relative_url | bust_file_cache }}" id="highlight_theme_light">
+  <link rel="stylesheet" href="{{ '/assets/css/jekyll-pygments-themes-native.css' | relative_url | bust_file_cache }}" id="highlight_theme_dark" media="none">
+  {% include site_head.html %}
+  <link rel="stylesheet" href="{{ '/assets/css/blog.css' | relative_url | bust_file_cache }}">
+  <link rel="canonical" href="{{ page.url | replace:'index.html','' | absolute_url }}">
+  {% include scripts/analytics.html %}
+</head>
+
+<body class="blog">
+  {% include topnav.html %}
+  <main class="page">
+
+    {{ content }}
+
+    <footer class="footer">{{ site.first_name }} {{ site.last_name }} &copy; {{ site.time | date: '%Y' }}</footer>
+  </main>
+
+  {% include scripts/mathjax.html %}
+</body>
+</html>

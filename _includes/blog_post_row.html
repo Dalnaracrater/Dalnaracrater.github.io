@@ -1,0 +1,27 @@
+{%- comment -%}
+  One row in a blog list. Pass the post as `post`.
+  The blurb is the post's `description`, or the post text before its first code block.
+{%- endcomment -%}
+{%- assign row_post = include.post -%}
+{%- if row_post.redirect == blank -%}
+  {%- assign row_url = row_post.url | relative_url -%}
+{%- elsif row_post.redirect contains '://' -%}
+  {%- assign row_url = row_post.redirect -%}
+{%- else -%}
+  {%- assign row_url = row_post.redirect | relative_url -%}
+{%- endif -%}
+{%- if row_post.description != blank -%}
+  {%- assign row_blurb = row_post.description -%}
+{%- else -%}
+  {%- assign row_blurb = row_post.content | split: '<div class="language-' | first | split: '<pre' | first -%}
+  {%- assign row_blurb = row_blurb | strip_html | normalize_whitespace | truncate: 160 -%}
+{%- endif -%}
+<a class="post-row" href="{{ row_url }}"{% if row_post.redirect contains '://' %} target="_blank" rel="noopener"{% endif %}>
+  <span class="post-date">{{ row_post.date | date: "%b %-d, %Y" }}</span>
+  <span class="post-info">
+    <span class="post-title">{{ row_post.title }}</span>
+    {%- if row_blurb != blank %}
+    <span class="post-blurb">{{ row_blurb }}</span>
+    {%- endif %}
+  </span>
+</a>
