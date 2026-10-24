@@ -39,7 +39,6 @@
             {% if sep %} &nbsp;/&nbsp; {% endif %}<a href="{{ cv_page.url | relative_url }}">CV</a>
             {%- assign sep = true -%}
           {%- endif -%}
-          {% if sep %} &nbsp;/&nbsp; {% endif %}<a href="{{ '/blog/' | relative_url }}">Blog</a>
           {%- if site.scholar_userid -%}
             {{ ' ' }}&nbsp;/&nbsp; <a href="https://scholar.google.com/citations?user={{ site.scholar_userid }}">Scholar</a>
           {%- endif -%}

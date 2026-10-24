@@ -7,6 +7,8 @@ layout: blog
     photos_dir = folder under the site root, e.g. /assets/img/cooking/
     subtitle   = line under the title (optional)
   The page's own Markdown text, if any, appears above the grid.
+  Thumbnails are the 480px webp files made by jekyll-imagemagick at build time;
+  if one is missing, the original photo is shown instead.
 {%- endcomment -%}
 {%- assign photo_exts = ".jpg,.jpeg,.png,.JPG,.JPEG,.PNG" | split: "," -%}
 {%- assign photos = site.static_files | where_exp: "f", "f.path contains page.photos_dir" | sort: "path" -%}
@@ -30,14 +32,14 @@ layout: blog
   {%- for photo in photos -%}
     {%- unless photo_exts contains photo.extname -%}{%- continue -%}{%- endunless -%}
     {%- assign n = n | plus: 1 -%}
-    {%- assign thumb = photo.path | remove: photo.extname | append: "-480.webp" -%}
-  <a class="gallery-item" href="{{ photo.path | relative_url }}">
-    <picture>
-      {%- if site.imagemagick.enabled %}
-      <source type="image/webp" srcset="{{ thumb | relative_url }}">
-      {%- endif %}
-      <img src="{{ photo.path | relative_url }}" alt="{{ page.title | capitalize }} photo {{ n }}" loading="lazy" decoding="async">
-    </picture>
+    {%- assign original = photo.path | relative_url -%}
+    {%- if site.imagemagick.enabled -%}
+      {%- assign thumb = photo.path | remove: photo.extname | append: "-480.webp" | relative_url -%}
+    {%- else -%}
+      {%- assign thumb = original -%}
+    {%- endif %}
+  <a class="gallery-item" href="{{ original }}">
+    <img src="{{ thumb }}" onerror="this.onerror=null;this.src='{{ original }}'" alt="{{ page.title | capitalize }} photo {{ n }}" loading="lazy" decoding="async">
   </a>
   {%- endfor %}
 </div>
