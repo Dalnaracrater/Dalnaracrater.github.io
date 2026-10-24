@@ -25,7 +25,7 @@ I am currently working with [Prof. Suhyun Kim](https://kdst.re.kr/page/Selected-
 
 I earned a Master's degree in Computer Science at University of California, Davis advised by [Prof. Ian Davidson](https://www.cs.ucdavis.edu/~davidson/). Under supervision of Prof. Davidson, I studied deep fair clustering using constraint programing (CP) and learned that CP can be effectively apllied to ML systems. I obtained my Bachelor's degree in Computer Science and Engineering at Dongguk University. [Prof. Yunsik Son](https://sites.google.com/dgu.ac.kr/plass/english?authuser=0) first introduced me to programming language, secure software and related research area.
 
-In my free time, I usually cook ([<u>click!</u>](/cooking/)) or watch movies.
+In my free time, I usually [<u>cook!</u>](/cooking/) or watch movies.
 
 <!-- Write your biography here. Tell the world about yourself. Link to your favorite [subreddit](http://reddit.com). You can put a picture in, too. The code is already in, just name your picture `prof_pic.jpg` and put it in the `img/` folder.
 
