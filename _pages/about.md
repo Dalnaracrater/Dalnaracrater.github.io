@@ -9,7 +9,7 @@ profile:
 # Shown under the "Research" heading.
 research: >
 
-  We are delegating more authority to AI in safety-critical systmes. However, we have not agreed on what "safe" means, and we will sometimes get it wrong. So we must **at least preserve our ability to check what AI systems actually do and to correct them when they fail**. My research is a step toward this.
+  We are delegating more authority to AI in safety-critical systems. Yet what counts as “safe” depends on context, is contested across communities, and can never be fully specified in advance. We will sometimes get it wrong. We must therefore **at least preserve our ability to check what AI systems actually do and to correct them when they fail**. My research is a step in that direction.
 
 # Bibliography file (in _bibliography/) listed below the Research section.
 papers: papers_intl
